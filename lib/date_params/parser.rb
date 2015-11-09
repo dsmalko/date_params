@@ -9,6 +9,8 @@ require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/hash/keys'
 
 class DateParams::Parser
+  cattr_writer :default_date_format
+
   attr_reader :param, :options, :params, :date_format, :time_format
   def initialize(param, options, params)
     @param = param
@@ -51,7 +53,7 @@ class DateParams::Parser
   protected
 
   def default_date_format
-    '%m/%d/%Y'
+    @@default_date_format || '%m/%d/%Y'
   end
 
   def default_time_format
