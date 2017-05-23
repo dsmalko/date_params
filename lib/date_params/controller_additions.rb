@@ -8,7 +8,7 @@ module DateParams
       # Converts a text field with a date, in a specified format, into a Date object
       def date_params(*args)
         options = args.extract_options!
-        before_filter options do |controller|
+        before_action options do |controller|
           args.each { |param| DateParams::Parser.new(param, options, controller.params).parse_date_param! }
         end
       end
