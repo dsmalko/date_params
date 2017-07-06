@@ -17,7 +17,7 @@ module DateParams
       # and combines them into a new timezone-aware datetime field.
       def datetime_params(*args)
         options = args.extract_options!
-        before_filter options do |controller|
+        before_action options do |controller|
           args.each { |param| DateParams::Parser.new(param, options, controller.params).parse_datetime_param! }
         end
       end
